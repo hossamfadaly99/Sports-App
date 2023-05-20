@@ -14,6 +14,7 @@
 		9F3EAF202A193194001B28AA /* Sports_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F3EAF1E2A193194001B28AA /* Sports_App.xcdatamodeld */; };
 		9F3EAF222A193196001B28AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3EAF212A193196001B28AA /* Assets.xcassets */; };
 		9F3EAF252A193196001B28AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3EAF232A193196001B28AA /* LaunchScreen.storyboard */; };
+		9F3EAF2E2A1935A5001B28AA /* MyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3EAF2D2A1935A5001B28AA /* MyResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9F3EAF212A193196001B28AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F3EAF242A193196001B28AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F3EAF262A193196001B28AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F3EAF2D2A1935A5001B28AA /* MyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		9F3EAF142A193194001B28AA /* Sports App */ = {
 			isa = PBXGroup;
 			children = (
+				9F3EAF2C2A193591001B28AA /* Model */,
 				9F3EAF152A193194001B28AA /* AppDelegate.swift */,
 				9F3EAF172A193194001B28AA /* SceneDelegate.swift */,
 				9F3EAF192A193194001B28AA /* ViewController.swift */,
@@ -68,6 +71,14 @@
 				9F3EAF1E2A193194001B28AA /* Sports_App.xcdatamodeld */,
 			);
 			path = "Sports App";
+			sourceTree = "<group>";
+		};
+		9F3EAF2C2A193591001B28AA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9F3EAF2D2A1935A5001B28AA /* MyResult.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +154,7 @@
 			files = (
 				9F3EAF1A2A193194001B28AA /* ViewController.swift in Sources */,
 				9F3EAF162A193194001B28AA /* AppDelegate.swift in Sources */,
+				9F3EAF2E2A1935A5001B28AA /* MyResult.swift in Sources */,
 				9F3EAF202A193194001B28AA /* Sports_App.xcdatamodeld in Sources */,
 				9F3EAF182A193194001B28AA /* SceneDelegate.swift in Sources */,
 			);
