@@ -7,6 +7,9 @@
 
 import Foundation
 
-struct MyResult{
+struct MyResult<T>: Decodable where T: Decodable{
   //testing github
+  var success: Int?
+  var result: [T]?
+  
 }
