@@ -13,7 +13,7 @@
         <!--Sports-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Sports" id="BYZ-38-t0r" customClass="ViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sports" id="BYZ-38-t0r" customClass="SportsViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,6 +96,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1895.4198473282443" y="-163.38028169014086"/>
+        </scene>
+        <!--League Details View Controller-->
+        <scene sceneID="1Df-yn-TFZ">
+            <objects>
+                <viewController storyboardIdentifier="LeagueDetailsViewController" id="bjI-Y4-i6T" customClass="LeagueDetailsViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="THp-h3-uXa">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="2Dj-cq-Sqm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="glq-nx-ULv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2923" y="-437"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="cHY-fA-TaG">

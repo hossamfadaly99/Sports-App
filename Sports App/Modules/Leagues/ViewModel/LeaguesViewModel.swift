@@ -9,7 +9,7 @@ import Foundation
 class LeaguesViewModel{
   var bindResultToViewController: (()->()) = {}
 
-  var result: [FootballLeague]? = [] {
+  var result: [AllLeagues]? = [] {
     didSet{
       bindResultToViewController()
     }
@@ -20,12 +20,8 @@ class LeaguesViewModel{
     let url = "https://apiv2.allsportsapi.com/\(sportName)/"
     let parameters = ["met" : "Leagues", "APIkey" : Constants.API_KEY]
 
-    NetworkManager.fetchData(url: url, param: parameters){ [weak self] (response : MyResult<FootballLeague>?) in
+    NetworkManager.fetchData(url: url, param: parameters){ [weak self] (response : MyResult<AllLeagues>?) in
 
-//      var resultArray: [FootballLeague]! = []
-//      response?.result?.forEach({ item in
-//        resultArray.append(item)
-//      })
       self?.result = response?.result
 
     }
