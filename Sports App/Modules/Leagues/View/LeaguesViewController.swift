@@ -31,9 +31,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     viewModel.getItems(sportName: sportName)
 
     viewModel.bindResultToViewController = { [weak self] in
-      self?.viewModel.result?.forEach({ footballLeague in
-        print(footballLeague.league_name ?? "League")
-      })
+
       DispatchQueue.main.async {
 
         self?.tableview.reloadData()
@@ -82,6 +80,14 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     return cell
   }
 
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    let leagueDetailsVC = self.storyboard?.instantiateViewController(identifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
+    leagueDetailsVC.sportName = self.sportName
+    leagueDetailsVC.leagueId = (viewModel.result?[indexPath.row].league_key)!
+    self.present(leagueDetailsVC, animated: true)
+
+  }
 
     /*
     // MARK: - Navigation

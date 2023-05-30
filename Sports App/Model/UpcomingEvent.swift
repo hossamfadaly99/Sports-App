@@ -78,15 +78,16 @@ public class Away_team: Decodable {
 }
 
 public class Away_scorer: Decodable {
-  public var _in : String?
-  public var _out : String?
+  public var inCoding : String?
+  public var outCoding : String?
   public var in_id : Int?
   public var out_id : Int?
 
   enum CodingKeys: String, CodingKey{
-    case _in = "in"
-    case _out = "out"
-    case in_id, out_id
+    case inCoding = "in"
+    case outCoding = "out"
+    case in_id = "in_id"
+    case out_id = "out_id"
   }
 }
 

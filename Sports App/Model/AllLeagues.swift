@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class FootballLeague: Decodable{
+class AllLeagues: Decodable{
   var country_key: Int?
   var country_logo: String?
   var country_name: String?
