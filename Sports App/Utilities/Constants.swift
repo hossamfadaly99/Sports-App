@@ -41,3 +41,5 @@ class Constants{
 
 }
 let teamImagePlaceholder = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/EA_Sports_monochrome_logo.svg/2048px-EA_Sports_monochrome_logo.svg.png"
+
+let playerImagePlaceholder = "https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/person-profile-icon.png"

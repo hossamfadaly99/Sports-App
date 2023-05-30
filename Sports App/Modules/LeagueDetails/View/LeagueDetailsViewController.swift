@@ -165,6 +165,16 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
     cell.contentView.layer.cornerRadius = 16
   }
 
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if (viewModel.upcomingEventResult?.count ?? 0 == 0 && indexPath.section == 1) || (viewModel.upcomingEventResult?.count ?? 0 != 0 && indexPath.section == 2){
+      print("3a3hkbleurbcljberjhlbcjher")
+      let teamVC = self.storyboard?.instantiateViewController(identifier: "TeamDetailsViewController") as! TeamDetailsViewController
+      teamVC.sportName = self.sportName
+      teamVC.teamId = (self.viewModel.teams?[indexPath.row].team_key)!
+      self.present(teamVC, animated: true)
+    }
+  }
+
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as! EventCollectionViewCell
     let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell", for: indexPath) as! TeamCollectionViewCell
