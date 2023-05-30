@@ -8,6 +8,7 @@
 import UIKit
 
 class LeagueDetailsViewController: UIViewController {
+  @IBOutlet weak var collectionView: UICollectionView!
 
   var indicator: UIActivityIndicatorView!
   var sportName:String = ""
@@ -24,43 +25,204 @@ class LeagueDetailsViewController: UIViewController {
     indicator.startAnimating()
   }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let eventCell = UINib(nibName: "EventCollectionViewCell", bundle: nil)
+    collectionView.register(eventCell, forCellWithReuseIdentifier: "EventCollectionViewCell")
+
+    let teamCell = UINib(nibName: "TeamCollectionViewCell", bundle: nil)
+    collectionView.register(teamCell, forCellWithReuseIdentifier: "TeamCollectionViewCell")
+
+    viewModel = LeagueDetailsViewModel()
+
+    requestData()
+    bindData()
 
 
+  }
+  func requestData(){
+    viewModel.getUpcomingEvent(sportName: sportName, leagueId: "\(leagueId)", startDate: Constants.currentDate, endDate: Constants.nextYear, eventType: .upcoming)
 
-      viewModel = LeagueDetailsViewModel()
-      
-      viewModel.getUpcomingEvent(sportName: "football", leagueId: "\(leagueId)", startDate: Constants.currentDate, endDate: Constants.nextYear, eventType: .upcoming)
+    viewModel.getUpcomingEvent(sportName: sportName, leagueId: "\(leagueId)", startDate: Constants.previousYear, endDate: Constants.currentDate, eventType: .latest)
 
-      viewModel.getUpcomingEvent(sportName: "football", leagueId: "\(leagueId)", startDate: Constants.previousYear, endDate: Constants.currentDate, eventType: .latest)
+    viewModel.getTeams(sportName: sportName, leagueId: "\(leagueId)")
+  }
 
+  func bindData(){
+    viewModel.bindResultToViewController = { [weak self] in
+      self?.dataFetchedCounter += 1
 
-      viewModel.bindResultToViewController = { [weak self] in
-        self?.dataFetchedCounter += 1
+      DispatchQueue.main.async {
 
-        DispatchQueue.main.async {
-
-//          self?.tableview.reloadData()
-
-//          self?.viewModel.upcomingEventResult?.forEach({ item in
-//            print(item.event_home_team ?? "aaaaaaaaa")
-//
-//          })
-          print(self?.viewModel.upcomingEventResult?.count)
-          print(self?.viewModel.latestEventResult?.count)
-
-//          if self?.viewModel.upcomingEventResult != nil && self?.viewModel.latestEventResult != nil{
-          if(self!.dataFetchedCounter % 2 == 0){
-            self?.indicator.stopAnimating()
+        if(self!.dataFetchedCounter % 3 == 0){
+          self?.indicator.stopAnimating()
+          self?.collectionView.reloadData()
+          let layout = UICollectionViewCompositionalLayout{
+            index, environment in
+            if self?.viewModel.upcomingEventResult?.count ?? 0 == 0{
+              switch index{
+              case 0:
+                return self?.drawTheVerticalSection()
+              default:
+                return self?.drawTheBottomHorizontalSection()
+              }
+            }else{
+              switch index{
+              case 0:
+                return self?.drawTheHorizontalSection()
+              case 1:
+                return self?.drawTheVerticalSection()
+              default:
+                return self?.drawTheBottomHorizontalSection()
+              }
+            }
           }
-//          }
-
+          self?.collectionView.setCollectionViewLayout(layout, animated: true)
         }
       }
+    }
+  }
 
-      
+  func drawTheHorizontalSection() -> NSCollectionLayoutSection{
+    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+    let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.98), heightDimension: .absolute(185))
+    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+    group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)
+    let section = NSCollectionLayoutSection(group: group)
+    section.orthogonalScrollingBehavior = .continuous
+    section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 0)
+    section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
+    return section
+  }
+
+  func drawTheVerticalSection() -> NSCollectionLayoutSection{
+    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+    let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(185))
+    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+    group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
+    let section = NSCollectionLayoutSection(group: group)
+    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8)
+
+    section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
+    return section
+  }
+
+  func drawTheBottomHorizontalSection() -> NSCollectionLayoutSection{
+    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+    let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(132), heightDimension: .absolute(158))
+    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+    group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)
+    let section = NSCollectionLayoutSection(group: group)
+    section.orthogonalScrollingBehavior = .continuous
+    section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 0)
+    section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
+    return section
+  }
+
+}
+
+extension LeagueDetailsViewController: UICollectionViewDataSource{
+
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    var sectionCounter = 3
+
+    if viewModel.upcomingEventResult?.count ?? 0 == 0{
+      sectionCounter -= 1
     }
 
+
+    return sectionCounter
+  }
+
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    if viewModel.upcomingEventResult?.count ?? 0 == 0{
+      switch section{
+      case 0:
+        return viewModel.latestEventResult?.count ?? 0
+      default:
+        return viewModel.teams?.count ?? 0
+      }
+    } else {
+      switch section{
+      case 0:
+        return viewModel.upcomingEventResult?.count ?? 0
+      case 1:
+        return viewModel.latestEventResult?.count ?? 0
+      default:
+        return viewModel.teams?.count ?? 0
+      }
+    }
+  }
+
+  func makeCellBorderRadius(cell: UICollectionViewCell){
+    cell.contentView.backgroundColor = UIColor(named: "gray_e")
+    cell.contentView.layer.borderWidth = 2
+    cell.contentView.layer.borderColor = UIColor.black.cgColor
+    cell.contentView.layer.cornerRadius = 16
+  }
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as! EventCollectionViewCell
+    let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell", for: indexPath) as! TeamCollectionViewCell
+
+    makeCellBorderRadius(cell: eventCell)
+    makeCellBorderRadius(cell: teamCell)
+
+    if viewModel.upcomingEventResult?.count ?? 0 == 0{
+      switch indexPath.section {
+      case 0:
+        eventCell.loadData(event: (viewModel.latestEventResult?[indexPath.row])!)
+        return eventCell
+      default:
+        teamCell.loadData(team: (viewModel.teams?[indexPath.row])!)
+        return teamCell
+      }
+    } else {
+      switch indexPath.section {
+      case 0:
+        eventCell.loadData(event: (viewModel.upcomingEventResult?[indexPath.row])!)
+        return eventCell
+      case 1:
+        eventCell.loadData(event: (viewModel.latestEventResult?[indexPath.row])!)
+        return eventCell
+      default:
+        teamCell.loadData(team: (viewModel.teams?[indexPath.row])!)
+        return teamCell
+      }
+    }
+  }
+
+}
+extension LeagueDetailsViewController: UICollectionViewDelegate{
+
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+    if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "leagueDetailsHeader", for: indexPath) as? HeaderCollectionReusableView{
+      if self.viewModel.upcomingEventResult?.count ?? 0 == 0{
+        switch indexPath.section {
+        case 0:
+          sectionHeader.headerLabel.text = "Latest Events:"
+        default:
+          sectionHeader.headerLabel.text = "Teams:"
+        }
+      } else {
+        switch indexPath.section {
+        case 0:
+          sectionHeader.headerLabel.text = "Upcoming Events:"
+        case 1:
+          sectionHeader.headerLabel.text = "Latest Events:"
+        default:
+          sectionHeader.headerLabel.text = "Teams:"
+        }
+      }
+        return sectionHeader
+      }
+      return UICollectionReusableView()
+
+  }
 
 }

@@ -81,6 +81,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
     let leagueDetailsVC = self.storyboard?.instantiateViewController(identifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
     leagueDetailsVC.sportName = self.sportName
     leagueDetailsVC.leagueId = (viewModel.result?[indexPath.row].league_key)!
