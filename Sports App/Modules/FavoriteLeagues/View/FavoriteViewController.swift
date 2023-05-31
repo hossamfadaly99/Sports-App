@@ -50,6 +50,12 @@ extension FavoriteViewController: UITableViewDataSource{
 
     cell.leagueImage.kf.setImage(with: URL(string: viewModel.allDBLeagues[indexPath.row].leagueImage))
     
+    cell.leagueImage.layer.cornerRadius = cell.leagueImage.frame.size.width/2
+    cell.leagueImage.clipsToBounds = true
+
+    cell.contentView.layer.borderWidth = 2
+    cell.contentView.layer.borderColor = UIColor.black.cgColor
+    cell.contentView.layer.cornerRadius = cell.leagueImage.frame.size.width/2
 
     return cell
   }

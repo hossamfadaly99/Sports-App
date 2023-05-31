@@ -66,6 +66,9 @@ class LeagueDetailsViewController: UIViewController {
     }
   }
 
+  @IBAction func backBtnClick(_ sender: Any) {
+    self.dismiss(animated: true)
+  }
   @IBAction func favBtnClick(_ sender: UIBarButtonItem) {
     let newLeague = LocalLeague(leagueName: leagueName, leagueImage: leagueImage, leagueId: leagueId, sportName: self.sportName)
     viewModel.isFavLeague(leagueId: leagueId)
