@@ -46,14 +46,13 @@ class TeamDetailsViewController: UIViewController {
     viewModel.bindResultToViewController = { [weak self] in
 
       DispatchQueue.main.async {
-
+        self?.teamImage.image = UIImage(named: "unknown")
         self?.teamImage.kf.setImage(with: URL(string: self?.viewModel.team?.team_logo ?? teamImagePlaceholder), placeholder: UIImage(named: "unknown"))
 
         self?.nameLabel.text = self?.viewModel.team?.team_name
         self?.coachNameLabel.text = self?.viewModel.team?.coaches?[0].coach_name
 
         self?.collectionView.reloadData()
-
         self?.indicator.stopAnimating()
 
       }

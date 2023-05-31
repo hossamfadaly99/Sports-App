@@ -22,7 +22,7 @@ class TeamDetailsViewModel{
     let parameters = ["met" : "Teams", "teamId" : teamId, "APIkey" : Constants.API_KEY]
 
 
-      NetworkManager.fetchData(url: url, param: parameters){ [weak self] (response : MyResult<Team>?) in
+      NetworkManager().fetchData(url: url, param: parameters){ [weak self] (response : MyResult<Team>?) in
           self?.team = response?.result?[0]
     }
   }

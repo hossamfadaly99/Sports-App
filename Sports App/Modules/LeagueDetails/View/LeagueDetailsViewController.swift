@@ -9,11 +9,16 @@ import UIKit
 
 class LeagueDetailsViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var favBtn: UIBarButtonItem!
 
   var indicator: UIActivityIndicatorView!
   var sportName:String = ""
   var leagueId:Int = 0
+  var leagueName:String = ""
+  var leagueImage:String = ""
+
   var dataFetchedCounter = 0
+  let database = DBManager.sharedLeagueDB
 
   var viewModel: LeagueDetailsViewModel!
 
@@ -37,9 +42,41 @@ class LeagueDetailsViewController: UIViewController {
 
     requestData()
     bindData()
-
+    bindDB()
+    checkFav()
 
   }
+
+  func checkFav(){
+    viewModel.isFavLeague(leagueId: leagueId)
+    if (self.viewModel.isFavLeague) {
+      self.favBtn.image = UIImage(systemName: "star.fill")
+    }else if (self.viewModel.isFavLeague == false){
+      self.favBtn.image = UIImage(systemName: "star")
+    }
+  }
+
+  func bindDB(){
+    viewModel.bindDBToViewController = { [weak self] in
+      if ((self?.viewModel.isFavLeague == true)) {
+        self?.favBtn.image = UIImage(systemName: "star.fill")
+      }else if (self?.viewModel.isFavLeague == false){
+        self?.favBtn.image = UIImage(systemName: "star")
+      }
+    }
+  }
+
+  @IBAction func favBtnClick(_ sender: UIBarButtonItem) {
+    let newLeague = LocalLeague(leagueName: leagueName, leagueImage: leagueImage, leagueId: leagueId, sportName: self.sportName)
+    viewModel.isFavLeague(leagueId: leagueId)
+    print(viewModel.isFavLeague)
+    if self.viewModel.isFavLeague{
+      viewModel.deleteFavLeague(leagueId: leagueId)
+    }else {
+      viewModel.insertFavLeague(league: newLeague)
+    }
+  }
+
   func requestData(){
     viewModel.getUpcomingEvent(sportName: sportName, leagueId: "\(leagueId)", startDate: Constants.currentDate, endDate: Constants.nextYear, eventType: .upcoming)
 

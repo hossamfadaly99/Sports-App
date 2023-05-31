@@ -9,12 +9,11 @@ import Foundation
 import Alamofire
 
 protocol NetworkService{
-  static func fetchData<T: Decodable>(url: String, param: Parameters, compilitionHandler: @escaping (MyResult<T>?) -> Void)
+   func fetchData<T: Decodable>(url: String, param: Parameters, compilitionHandler: @escaping (MyResult<T>?) -> Void)
 }
 
 class NetworkManager: NetworkService{
-  static func fetchData<T>(url: String, param: Parameters, compilitionHandler: @escaping (MyResult<T>?) -> Void) where T : Decodable {
-//    var myUrl = "https://apiv2.allsportsapi.com/football/"
+   func fetchData<T>(url: String, param: Parameters, compilitionHandler: @escaping (MyResult<T>?) -> Void) where T : Decodable {
 
 
     AF.request(url, method: .get, parameters: param).responseJSON { response in
