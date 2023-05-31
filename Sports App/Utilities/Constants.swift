@@ -14,18 +14,18 @@ class Constants{
   }
 
   static var nextYear: String {
-    return getFormattedDateAddedBy(year: 3)
+    return getFormattedDateAddedBy(year: 1)
   }
 
   static var previousYear: String {
-    return getFormattedDateAddedBy(year: -3)
+    return getFormattedDateAddedBy(year: -1)
   }
 
   private static func getFormattedDateAddedBy(year: Int) -> String{
     let currentDate = Date()
     var dateComponent = DateComponents()
 
-    dateComponent.month = year
+    dateComponent.year = year
 
     let futureDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
 
