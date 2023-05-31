@@ -86,7 +86,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     leagueDetailsVC.sportName = self.sportName
     leagueDetailsVC.leagueId = (viewModel.result?[indexPath.row].league_key)!
     leagueDetailsVC.leagueName = (viewModel.result?[indexPath.row].league_name)!
-    leagueDetailsVC.leagueImage = (viewModel.result?[indexPath.row].league_logo)!
+    leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].league_logo ?? ""
     self.present(leagueDetailsVC, animated: true)
 
   }

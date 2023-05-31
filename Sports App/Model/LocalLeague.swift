@@ -10,4 +10,5 @@ struct LocalLeague {
   var leagueName: String
   var leagueImage: String
   var leagueId: Int
+  var sportName: String
 }

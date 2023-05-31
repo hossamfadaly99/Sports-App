@@ -31,6 +31,7 @@ class DBManager{
     league.setValue(newLeague.leagueName, forKey: "league_name")
     league.setValue(newLeague.leagueImage, forKey: "league_image")
     league.setValue(newLeague.leagueId, forKey: "league_id")
+    league.setValue(newLeague.sportName, forKey: "sport_name")
 
     do {
       try manager.save()
@@ -48,10 +49,11 @@ class DBManager{
       nsManagedLeagues = try manager.fetch(fetchRequest)
 
       for league in nsManagedLeagues{
-        var leagueObj = LocalLeague(leagueName: "", leagueImage: "", leagueId: 0)
+        var leagueObj = LocalLeague(leagueName: "", leagueImage: "", leagueId: 0, sportName: "")
         leagueObj.leagueId = league.value(forKey: "league_id") as! Int
         leagueObj.leagueName = league.value(forKey: "league_name") as! String
         leagueObj.leagueImage = league.value(forKey: "league_image") as! String
+        leagueObj.sportName = league.value(forKey: "sport_name") as! String
         arrayOfLeagues?.append(leagueObj)
       }
       return  arrayOfLeagues

@@ -67,7 +67,7 @@ class LeagueDetailsViewController: UIViewController {
   }
 
   @IBAction func favBtnClick(_ sender: UIBarButtonItem) {
-    let newLeague = LocalLeague(leagueName: leagueName, leagueImage: leagueImage, leagueId: leagueId)
+    let newLeague = LocalLeague(leagueName: leagueName, leagueImage: leagueImage, leagueId: leagueId, sportName: self.sportName)
     viewModel.isFavLeague(leagueId: leagueId)
     print(viewModel.isFavLeague)
     if self.viewModel.isFavLeague{

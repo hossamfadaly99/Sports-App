@@ -57,7 +57,7 @@ extension FavoriteViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     let leagueDetailsVC = self.storyboard?.instantiateViewController(identifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
-//    leagueDetailsVC.sportName = self.sportName
+    leagueDetailsVC.sportName = (viewModel.allDBLeagues[indexPath.row].sportName)
     leagueDetailsVC.leagueId = (viewModel.allDBLeagues[indexPath.row].leagueId)
     leagueDetailsVC.leagueName = (viewModel.allDBLeagues[indexPath.row].leagueName)
     leagueDetailsVC.leagueImage = (viewModel.allDBLeagues[indexPath.row].leagueImage)
