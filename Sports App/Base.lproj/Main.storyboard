@@ -112,7 +112,11 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="League Details" id="mDM-mL-rzF">
-                                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="3Rr-ws-T9S"/>
+                                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="3Rr-ws-T9S">
+                                            <connections>
+                                                <action selector="favBtnClick:" destination="bjI-Y4-i6T" id="xFS-G5-ofp"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -162,6 +166,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="rrJ-6c-Www" id="ijg-nS-ysr"/>
+                        <outlet property="favBtn" destination="3Rr-ws-T9S" id="iYe-gC-JoU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glq-nx-ULv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
