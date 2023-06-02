@@ -16,6 +16,7 @@ class LeagueDetailsViewController: UIViewController {
   var leagueId:Int = 0
   var leagueName:String = ""
   var leagueImage:String = ""
+  var reloadProtocol: ReloadProtocol?
 
   var dataFetchedCounter = 0
   let database = DBManager.sharedLeagueDB
@@ -275,4 +276,11 @@ extension LeagueDetailsViewController: UICollectionViewDelegate{
 
   }
 
+}
+
+extension LeagueDetailsViewController{
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    reloadProtocol?.reloadTable()
+  }
 }

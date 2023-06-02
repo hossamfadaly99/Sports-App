@@ -12,6 +12,7 @@ class FavoriteViewController: UIViewController {
 
   var viewModel: FavoriteViewModel!
   override func viewWillAppear(_ animated: Bool) {
+    viewModel.getAllFavLeagues()
     self.tablee.reloadData()
   }
     override func viewDidLoad() {
@@ -67,8 +68,16 @@ extension FavoriteViewController: UITableViewDataSource{
     leagueDetailsVC.leagueId = (viewModel.allDBLeagues[indexPath.row].leagueId)
     leagueDetailsVC.leagueName = (viewModel.allDBLeagues[indexPath.row].leagueName)
     leagueDetailsVC.leagueImage = (viewModel.allDBLeagues[indexPath.row].leagueImage)
+    leagueDetailsVC.reloadProtocol = self
     self.present(leagueDetailsVC, animated: true)
   }
 
 
+}
+
+extension FavoriteViewController: ReloadProtocol{
+  func reloadTable() {
+    viewModel.getAllFavLeagues()
+    tablee.reloadData()
+  }
 }
