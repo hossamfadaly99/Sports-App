@@ -23,7 +23,7 @@ final class NetworkingTest: XCTestCase {
 
       func test_fetch_teams() {
           // Given
-          let promise = XCTestExpectation(description: "Fetch photos completed")
+          let promise = XCTestExpectation(description: "Fetch teams completed")
           var responseTeams: [Team]?
 
           // When
@@ -43,7 +43,7 @@ final class NetworkingTest: XCTestCase {
 
   func test_fetch_nil_teams() {
       // Given
-      let promise = XCTestExpectation(description: "Fetch photos completed")
+      let promise = XCTestExpectation(description: "Fetch teams completed")
       var responseTeams: [Team]?
 
       // When

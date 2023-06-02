@@ -112,6 +112,11 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="League Details" id="mDM-mL-rzF">
+                                        <barButtonItem key="leftBarButtonItem" image="chevron.backward" catalog="system" id="jKL-ij-kaX">
+                                            <connections>
+                                                <action selector="backBtnClick:" destination="bjI-Y4-i6T" id="kki-aK-bQV"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="3Rr-ws-T9S">
                                             <connections>
                                                 <action selector="favBtnClick:" destination="bjI-Y4-i6T" id="xFS-G5-ofp"/>
@@ -252,7 +257,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GfH-46-nk6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GfH-46-nk6">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -432,6 +437,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="star" catalog="system" width="128" height="116"/>
