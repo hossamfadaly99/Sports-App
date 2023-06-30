@@ -21,6 +21,11 @@ class EventCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
   func loadData(event: Event?){
+    print("fwkrjtkjrbhthj")
+    print(event?.leagueRound)
+    print(event?.eventStadium)
+    print(event?.leagueLogo)
+//    print(event.c)
     teamOneLabel.text = event?.eventHomeTeam
     teamTwoLabel.text = event?.eventAwayTeam
     teamOneImage.kf.setImage(with: URL(string: event?.homeTeamLogo ?? teamImagePlaceholder))

@@ -200,9 +200,10 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
   }
 
   func makeCellBorderRadius(cell: UICollectionViewCell){
-    cell.contentView.backgroundColor = UIColor(named: "gray_e")
-    cell.contentView.layer.borderWidth = 2
-    cell.contentView.layer.borderColor = UIColor.black.cgColor
+//    cell.contentView.backgroundColor = UIColor(named: "gray_e")
+    cell.contentView.backgroundColor = .white
+    cell.contentView.layer.borderWidth = 0.5
+    cell.contentView.layer.borderColor = UIColor.systemGray2.cgColor
     cell.contentView.layer.cornerRadius = 16
   }
 
