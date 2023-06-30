@@ -10,6 +10,8 @@ import Kingfisher
 
 class EventCollectionViewCell: UICollectionViewCell {
 
+  @IBOutlet weak var stadiumLabel: UILabel!
+  @IBOutlet weak var roundLabel: UILabel!
   @IBOutlet weak var teamOneImage: UIImageView!
   @IBOutlet weak var teamTwoImage: UIImageView!
   @IBOutlet weak var teamOneLabel: UILabel!
@@ -26,6 +28,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     print(event?.eventStadium)
     print(event?.leagueLogo)
 //    print(event.c)
+    stadiumLabel.text = "\(event?.eventStadium?.split(separator: "(").first ?? "")"
+    roundLabel.text = event?.leagueRound
     teamOneLabel.text = event?.eventHomeTeam
     teamTwoLabel.text = event?.eventAwayTeam
     teamOneImage.kf.setImage(with: URL(string: event?.homeTeamLogo ?? teamImagePlaceholder))
