@@ -13,6 +13,7 @@
 		9F184CEA2A268795004A326F /* TeamDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F184CE92A268795004A326F /* TeamDetailsViewModel.swift */; };
 		9F184CEC2A2687A5004A326F /* TeamDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F184CEB2A2687A5004A326F /* TeamDetails.swift */; };
 		9F1EB4B22A1EC8F100CE5F74 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1EB4B12A1EC8F100CE5F74 /* Event.swift */; };
+		9F2213A92A4F472100797550 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2213A82A4F472100797550 /* Utilities.swift */; };
 		9F2DDB5C2A2618FF00DE7DB0 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DDB5B2A2618FF00DE7DB0 /* Team.swift */; };
 		9F2DDB652A26200800DE7DB0 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2DDB632A26200800DE7DB0 /* EventCollectionViewCell.swift */; };
 		9F2DDB662A26200800DE7DB0 /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F2DDB642A26200800DE7DB0 /* EventCollectionViewCell.xib */; };
@@ -76,6 +77,7 @@
 		9F184CE92A268795004A326F /* TeamDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewModel.swift; sourceTree = "<group>"; };
 		9F184CEB2A2687A5004A326F /* TeamDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetails.swift; sourceTree = "<group>"; };
 		9F1EB4B12A1EC8F100CE5F74 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9F2213A82A4F472100797550 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		9F2DDB5B2A2618FF00DE7DB0 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		9F2DDB632A26200800DE7DB0 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		9F2DDB642A26200800DE7DB0 /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				9FDCD1362A1979B3008441F2 /* Constants.swift */,
+				9F2213A82A4F472100797550 /* Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				9F2DDB652A26200800DE7DB0 /* EventCollectionViewCell.swift in Sources */,
 				9FDCD1342A197529008441F2 /* LeaguesViewController.swift in Sources */,
 				9F2E76BA2A26EDA80061BB2E /* DBManager.swift in Sources */,
+				9F2213A92A4F472100797550 /* Utilities.swift in Sources */,
 				9F2E76BC2A26EE4B0061BB2E /* LocalLeague.swift in Sources */,
 				9F3EAF322A194B43001B28AA /* AllLeagues.swift in Sources */,
 				9F3EAF342A1956BD001B28AA /* UpcomingEvent.swift in Sources */,

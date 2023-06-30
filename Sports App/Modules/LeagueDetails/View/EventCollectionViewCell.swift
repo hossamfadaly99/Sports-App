@@ -17,21 +17,33 @@ class EventCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var teamOneLabel: UILabel!
   @IBOutlet weak var teamTwoLabel: UILabel!
   @IBOutlet weak var resultLabel: UILabel!
+  @IBOutlet weak var upcomingDate: UIView!
+  @IBOutlet weak var upcomingDateText: UILabel!
 
   override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    upcomingDate.layer.borderColor = UIColor(named: "main_green")?.cgColor
+    upcomingDate.layer.cornerRadius = 12
+    upcomingDate.layer.borderWidth = 1
+    upcomingDate.layer.backgroundColor = UIColor(named: "main_green_very_light")?.cgColor
     }
   func loadData(event: Event?){
-    print("fwkrjtkjrbhthj")
-    print(event?.leagueRound)
-    print(event?.eventStadium)
-    print(event?.leagueLogo)
-//    print(event.c)
+    upcomingDateText.text = reformatDate(dateString: event?.eventDay ?? "")
     stadiumLabel.text = "\(event?.eventStadium?.split(separator: "(").first ?? "")"
     roundLabel.text = event?.leagueRound
     teamOneLabel.text = event?.eventHomeTeam
     teamTwoLabel.text = event?.eventAwayTeam
+
+    print(event?.finalResult ?? "")
+    if event?.finalResult ?? "" == "-"{
+      upcomingDate.isHidden = false
+      resultLabel.isHidden = true
+    } else {
+      upcomingDate.isHidden = true
+      resultLabel.isHidden = false
+    }
+
     teamOneImage.kf.setImage(with: URL(string: event?.homeTeamLogo ?? teamImagePlaceholder))
     teamTwoImage.kf.setImage(with: URL(string: event?.awayTeamLogo ?? teamImagePlaceholder))
     resultLabel.text = event?.finalResult ?? ""
