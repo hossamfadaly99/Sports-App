@@ -117,11 +117,13 @@
                                 <items>
                                     <navigationItem title="League Details" id="mDM-mL-rzF">
                                         <barButtonItem key="leftBarButtonItem" image="chevron.backward" catalog="system" id="jKL-ij-kaX">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="backBtnClick:" destination="bjI-Y4-i6T" id="kki-aK-bQV"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="3Rr-ws-T9S">
+                                            <color key="tintColor" systemColor="systemYellowColor"/>
                                             <connections>
                                                 <action selector="favBtnClick:" destination="bjI-Y4-i6T" id="xFS-G5-ofp"/>
                                             </connections>
@@ -336,8 +338,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QUx-Xn-Fku">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QUx-Xn-Fku">
+                                <rect key="frame" x="0.0" y="99" width="393" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeaguesTableViewCell" rowHeight="72" id="gL9-eZ-PgU" customClass="LeaguesTableViewCell" customModule="Sports_App" customModuleProvider="target">
@@ -382,15 +384,41 @@
                                     <outlet property="delegate" destination="p49-xg-o6D" id="ujI-VM-roo"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kT-BQ-1t8">
+                                <rect key="frame" x="16" y="63" width="40" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="BHA-Hr-Brn"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="backBtnClick:" destination="p49-xg-o6D" eventType="touchUpInside" id="Hnl-XK-qSw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leagues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbD-GR-E9j">
+                                <rect key="frame" x="159.66666666666666" y="67" width="74" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="1EX-mw-FoY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DIc-wQ-yFc"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DIc-wQ-yFc" firstAttribute="trailing" secondItem="QUx-Xn-Fku" secondAttribute="trailing" id="78e-h0-ha6"/>
-                            <constraint firstItem="QUx-Xn-Fku" firstAttribute="top" secondItem="DIc-wQ-yFc" secondAttribute="top" id="LlN-yb-Ovn"/>
+                            <constraint firstItem="QUx-Xn-Fku" firstAttribute="top" secondItem="3kT-BQ-1t8" secondAttribute="bottom" constant="4" id="Fyd-pC-2di"/>
+                            <constraint firstItem="3kT-BQ-1t8" firstAttribute="top" secondItem="DIc-wQ-yFc" secondAttribute="top" constant="4" id="K9p-AV-KLw"/>
+                            <constraint firstItem="3kT-BQ-1t8" firstAttribute="leading" secondItem="DIc-wQ-yFc" secondAttribute="leading" constant="16" id="VrN-HG-MgS"/>
                             <constraint firstItem="QUx-Xn-Fku" firstAttribute="leading" secondItem="DIc-wQ-yFc" secondAttribute="leading" id="W1Z-pG-F6C"/>
                             <constraint firstItem="DIc-wQ-yFc" firstAttribute="bottom" secondItem="QUx-Xn-Fku" secondAttribute="bottom" id="ddD-m5-Un7"/>
+                            <constraint firstItem="sbD-GR-E9j" firstAttribute="centerY" secondItem="3kT-BQ-1t8" secondAttribute="centerY" id="hgp-yI-94Y"/>
+                            <constraint firstItem="sbD-GR-E9j" firstAttribute="centerX" secondItem="faq-k4-WGm" secondAttribute="centerX" id="wS5-KH-oEE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZNg-t6-pKi"/>
@@ -451,6 +479,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

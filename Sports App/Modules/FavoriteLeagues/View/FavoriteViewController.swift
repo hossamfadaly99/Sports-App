@@ -17,6 +17,8 @@ class FavoriteViewController: UIViewController {
   }
     override func viewDidLoad() {
         super.viewDidLoad()
+      let cell = UINib(nibName: "LeagueCell", bundle: nil)
+      tablee.register(cell, forCellReuseIdentifier: "LeagueCell")
       viewModel = FavoriteViewModel()
 
       viewModel.bindDBToViewController = { [weak self] in
@@ -45,20 +47,17 @@ extension FavoriteViewController: UITableViewDataSource{
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "FavLeaguesTableViewCell") as! LeaguesTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell") as! LeagueCell
 
-    cell.leagueLabel.text = viewModel.allDBLeagues[indexPath.row].leagueName
+    cell.leaegueName.text = viewModel.allDBLeagues[indexPath.row].leagueName
 
-    cell.leagueImage.kf.setImage(with: URL(string: viewModel.allDBLeagues[indexPath.row].leagueImage))
-    
-    cell.leagueImage.layer.cornerRadius = cell.leagueImage.frame.size.width/2
-    cell.leagueImage.clipsToBounds = true
-
-    cell.contentView.layer.borderWidth = 2
-    cell.contentView.layer.borderColor = UIColor.black.cgColor
-    cell.contentView.layer.cornerRadius = cell.leagueImage.frame.size.width/2
+    let url = URL(string: viewModel.allDBLeagues[indexPath.row].leagueImage )
+    cell.leagueImage.kf.setImage(with: url,placeholder: UIImage(named: "trophy-cup"))
 
     return cell
+  }
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    92
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
