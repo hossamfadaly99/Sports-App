@@ -18,7 +18,7 @@ class LeagueDetailsViewModel{
     }
   }
 
-  var bindResultToViewController: (()->()) = {print("ggggggggggg")}
+  var bindResultToViewController: (()->()) = {}
 
 
   var upcomingEventResult: [Event]? = []
@@ -46,28 +46,6 @@ class LeagueDetailsViewModel{
     case upcoming
     case latest
   }
-
-//  func getAllData(sportName: String, leagueId: String){
-//    let upcomingBlock = BlockOperation{
-//      self.getUpcomingEvent(sportName: sportName, leagueId: leagueId, startDate: Constants.currentDate, endDate: Constants.nextYear, eventType: .upcoming)
-//    }
-//    let latestBlock = BlockOperation{
-//      self.getUpcomingEvent(sportName: sportName, leagueId: leagueId, startDate: Constants.previousYear, endDate: Constants.currentDate, eventType: .latest)
-//    }
-//    let teamsBlock = BlockOperation{
-//      self.getTeams(sportName: sportName, leagueId: leagueId)
-//    }
-//
-//
-//
-////    print(upcomingEventResult?.count)
-////    print(latestEventResult?.count)
-////    print(teams?.count)
-//
-////    self.upcomingEventResult = upcomingEventInitResult
-//    bindResultToViewController()
-//
-//  }
 
    func getUpcomingEvent(sportName: String, leagueId: String, startDate: String, endDate: String, eventType: EventType){
 

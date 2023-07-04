@@ -88,9 +88,6 @@ extension TeamViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as! PlayerCell
     cell.loadData(player: viewModel.team?.players?[indexPath.row])
-//    cell.teamName.text = viewModel.team?.players?[indexPath.row].player_name
-//
-//    cell.teamImage.kf.setImage(with: URL(string: viewModel.team?.players?[indexPath.row].player_image ?? playerImagePlaceholder))
 
     makeCellBorderRadius(cell: cell)
     return cell

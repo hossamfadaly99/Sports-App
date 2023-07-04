@@ -35,7 +35,7 @@ class EventCollectionViewCell: UICollectionViewCell {
     teamOneLabel.text = event?.eventHomeTeam
     teamTwoLabel.text = event?.eventAwayTeam
 
-    print(event?.finalResult ?? "")
+    
     if event?.finalResult ?? "" == "-"{
       upcomingDate.isHidden = false
       resultLabel.isHidden = true

@@ -73,7 +73,7 @@ class LeagueDetailsViewController: UIViewController {
   @IBAction func favBtnClick(_ sender: UIBarButtonItem) {
     let newLeague = LocalLeague(leagueName: leagueName, leagueImage: leagueImage, leagueId: leagueId, sportName: self.sportName)
     viewModel.isFavLeague(leagueId: leagueId)
-    print(viewModel.isFavLeague)
+
     if self.viewModel.isFavLeague{
       AlertCreator.showAlertWithAction(title: nil, message: "Are you sure you want to remove this league from favorites?", viewController: self) {
         self.viewModel.deleteFavLeague(leagueId: self.leagueId)
@@ -203,7 +203,6 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
   }
 
   func makeCellBorderRadius(cell: UICollectionViewCell){
-//    cell.contentView.backgroundColor = UIColor(named: "gray_e")
     cell.contentView.backgroundColor = .white
     cell.contentView.layer.borderWidth = 0.5
     cell.contentView.layer.borderColor = UIColor.systemGray2.cgColor
@@ -212,7 +211,7 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if (viewModel.upcomingEventResult?.count ?? 0 == 0 && indexPath.section == 1) || (viewModel.upcomingEventResult?.count ?? 0 != 0 && indexPath.section == 2){
-      print("3a3hkbleurbcljberjhlbcjher")
+      
       let teamVC = self.storyboard?.instantiateViewController(identifier: "TeamViewController") as! TeamViewController
       teamVC.sportName = self.sportName
       teamVC.teamId = (self.viewModel.teams?[indexPath.row].team_key)!
