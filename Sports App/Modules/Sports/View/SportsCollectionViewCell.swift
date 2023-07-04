@@ -15,19 +15,7 @@ class SportsCollectionViewCell: UICollectionViewCell {
 
   @IBOutlet weak var height: NSLayoutConstraint!
   @IBOutlet weak var width: NSLayoutConstraint!
-  //  override var frame: CGRect{
-//    get{
-//      return super.frame
-//    }
-//    set(newFrame){
-//      var frame = newFrame
-//      frame.origin.x += 16
-//      frame.size.width -= 2 * 16
-//      frame.origin.y += 16
-//      frame.size.height -= 2 * 16
-//      super.frame = frame
-//    }
-//  }
+  
   override class func awakeFromNib() {
     super.awakeFromNib()
   }

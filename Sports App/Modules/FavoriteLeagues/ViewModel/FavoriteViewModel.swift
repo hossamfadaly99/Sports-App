@@ -18,14 +18,6 @@ class FavoriteViewModel{
     }
   }
 
-//  var isFavLeague: Bool = false {
-//    didSet{
-//      bindDBToViewController()
-//    }
-//  }
-
-
-
   func deleteFavLeague(leagueId: Int){
     getAllFavLeagues()
     for (index, item) in allDBLeagues.enumerated(){

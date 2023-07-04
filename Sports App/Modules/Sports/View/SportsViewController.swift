@@ -28,15 +28,12 @@ class SportsViewController: UIViewController, UICollectionViewDataSource, UIColl
   }
 
   func makeCellBorderRadius(cell: UICollectionViewCell){
-//    cell.contentView.backgroundColor = UIColor(named: "gray_e")
-//    cell.contentView.backgroundColor = .white
     cell.contentView.layer.borderWidth = 0.5
     cell.contentView.layer.borderColor = UIColor.systemGray2.cgColor
     cell.contentView.layer.cornerRadius = 12
   }
 
   func makeCollectionInCenter(){
-//    sportsCollectionView.
     // Calculate the height of the collection view cell
     let cellHeight = screenWidth/2 - 24
 
@@ -45,10 +42,7 @@ class SportsViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     // Calculate the vertical offset needed to center the content vertically
     let verticalOffset = (sportsCollectionView.frame.size.height - contentHeight) / 2.0
-    print("krvhbt")
-    print(cellHeight)
-    print(contentHeight)
-    print(verticalOffset)
+    
 
     // Set the content inset of the collection view
     sportsCollectionView.contentInset = UIEdgeInsets(top: verticalOffset - 22, left: 0, bottom: verticalOffset + 22, right: 0)

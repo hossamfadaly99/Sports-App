@@ -8,7 +8,7 @@
 import Foundation
 
 struct MyResult<T>: Decodable where T: Decodable{
-  //testing github
+  
   var success: Int?
   var result: [T]?
   

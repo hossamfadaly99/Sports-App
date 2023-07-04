@@ -17,9 +17,7 @@ class TeamDetailsViewModel{
   }
 
   func getTeamDetails(sportName: String, teamId: String){
-    print("kjnkjrbktnb")
-    print(teamId)
-
+    
     let url = "https://apiv2.allsportsapi.com/\(sportName)/"
     let parameters = ["met" : "Teams", "teamId" : teamId, "APIkey" : Constants.API_KEY]
 
