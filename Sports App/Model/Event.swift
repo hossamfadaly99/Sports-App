@@ -20,6 +20,7 @@ struct Event: Decodable{
     let awayTeamLogo: String?
     let leagueKey: Int?
     let leagueName: String?
+  let leagueRound: String?
     let eventStadium: String?
     let leagueSeason: String?
     let finalResult: String?
@@ -37,6 +38,7 @@ struct Event: Decodable{
         case homeTeamLogo = "home_team_logo"
         case awayTeamLogo = "away_team_logo"
         case leagueName = "league_name"
+      case leagueRound = "league_round"
         case leagueKey = "league_key"
         case eventStadium = "event_stadium"
         case leagueSeason = "league_season"

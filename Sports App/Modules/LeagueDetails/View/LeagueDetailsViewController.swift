@@ -75,7 +75,9 @@ class LeagueDetailsViewController: UIViewController {
     viewModel.isFavLeague(leagueId: leagueId)
     print(viewModel.isFavLeague)
     if self.viewModel.isFavLeague{
-      viewModel.deleteFavLeague(leagueId: leagueId)
+      AlertCreator.showAlertWithAction(title: nil, message: "Are you sure you want to remove this league from favorites?", viewController: self) {
+        self.viewModel.deleteFavLeague(leagueId: self.leagueId)
+      }
     }else {
       viewModel.insertFavLeague(league: newLeague)
     }
@@ -110,6 +112,7 @@ class LeagueDetailsViewController: UIViewController {
             }else{
               switch index{
               case 0:
+
                 return self?.drawTheHorizontalSection()
               case 1:
                 return self?.drawTheVerticalSection()
@@ -127,12 +130,12 @@ class LeagueDetailsViewController: UIViewController {
   func drawTheHorizontalSection() -> NSCollectionLayoutSection{
     let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
-    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.98), heightDimension: .absolute(185))
+    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(232))
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-    group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)
+    group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
     let section = NSCollectionLayoutSection(group: group)
-    section.orthogonalScrollingBehavior = .continuous
-    section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 0)
+    section.orthogonalScrollingBehavior = .groupPagingCentered
+    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 16, trailing: 8)
     section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
     return section
   }
@@ -140,11 +143,11 @@ class LeagueDetailsViewController: UIViewController {
   func drawTheVerticalSection() -> NSCollectionLayoutSection{
     let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
-    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(185))
+    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(232))
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-    group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
+    group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0)
     let section = NSCollectionLayoutSection(group: group)
-    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8)
+    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 8, trailing: 12)
 
     section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
     return section
@@ -158,7 +161,7 @@ class LeagueDetailsViewController: UIViewController {
     group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8)
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .continuous
-    section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 0)
+    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 16, trailing: 0)
     section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
     return section
   }
@@ -200,16 +203,17 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
   }
 
   func makeCellBorderRadius(cell: UICollectionViewCell){
-    cell.contentView.backgroundColor = UIColor(named: "gray_e")
-    cell.contentView.layer.borderWidth = 2
-    cell.contentView.layer.borderColor = UIColor.black.cgColor
+//    cell.contentView.backgroundColor = UIColor(named: "gray_e")
+    cell.contentView.backgroundColor = .white
+    cell.contentView.layer.borderWidth = 0.5
+    cell.contentView.layer.borderColor = UIColor.systemGray2.cgColor
     cell.contentView.layer.cornerRadius = 16
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if (viewModel.upcomingEventResult?.count ?? 0 == 0 && indexPath.section == 1) || (viewModel.upcomingEventResult?.count ?? 0 != 0 && indexPath.section == 2){
       print("3a3hkbleurbcljberjhlbcjher")
-      let teamVC = self.storyboard?.instantiateViewController(identifier: "TeamDetailsViewController") as! TeamDetailsViewController
+      let teamVC = self.storyboard?.instantiateViewController(identifier: "TeamViewController") as! TeamViewController
       teamVC.sportName = self.sportName
       teamVC.teamId = (self.viewModel.teams?[indexPath.row].team_key)!
       self.present(teamVC, animated: true)

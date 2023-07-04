@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
   @IBOutlet weak var tableview: UITableView!
 
   var indicator: UIActivityIndicatorView!
@@ -16,9 +17,11 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
   var viewModel: LeaguesViewModel!
   override func viewDidLoad() {
-
     super.viewDidLoad()
-
+    self.navigationController?.navigationBar.isHidden = true
+    let cell = UINib(nibName: "LeagueCell", bundle: nil)
+    tableview.register(cell, forCellReuseIdentifier: "LeagueCell")
+    tableview.backgroundColor = UIColor.systemGray6
     indicator = UIActivityIndicatorView(style: .large)
     indicator.center = self.view.center
     self.view.addSubview(indicator)
@@ -50,34 +53,19 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "LeaguesTableViewCell") as! LeaguesTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell") as! LeagueCell
 
-    cell.leagueLabel.text =  self.viewModel.result?[indexPath.row].league_name ?? "aa"
-
-    let url = URL(string: viewModel.result?[indexPath.row].league_logo ??  "https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Olympic_Rings.svg/800px-Olympic_Rings.svg.png?20111003031241")
-
-    let processor = DownsamplingImageProcessor(size: cell.leagueImage.bounds.size)
-    |> RoundCornerImageProcessor(cornerRadius: (cell.leagueImage.bounds.size.width)/2)
-
-    cell.leagueImage.kf.setImage(
-      with: url,
-      placeholder: UIImage(named: "placeholderImage"),
-      options: [
-          .processor(processor),
-          .scaleFactor(UIScreen.main.scale),
-          .transition(.fade(1)),
-          .cacheOriginalImage
-      ])
-
-    cell.leagueImage.layer.cornerRadius = cell.leagueImage.frame.size.width/2
-    cell.leagueImage.clipsToBounds = true
-
-    cell.contentView.layer.borderWidth = 2
-    cell.contentView.layer.borderColor = UIColor.black.cgColor
-    cell.contentView.layer.cornerRadius = cell.leagueImage.frame.size.width/2
-
+    cell.loadData(league: (self.viewModel.result?[indexPath.row]))
 
     return cell
+  }
+
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    cell.backgroundColor = .systemGray6
+  }
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    92
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -91,14 +79,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
   }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  @IBAction func backBtnClick(_ sender: Any) {
+    self.navigationController?.popViewController(animated: true)
+  }
 }
